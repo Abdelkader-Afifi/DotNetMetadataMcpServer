@@ -11,6 +11,7 @@
         <VersionPrefix>2.0</VersionPrefix>
         <AssemblyVersion>$(VersionPrefix).1</AssemblyVersion>
         <FileVersion>$(VersionPrefix).1</FileVersion>
+        <DisableMSBuildAssemblyCopyCheck>true</DisableMSBuildAssemblyCopyCheck>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,7 +25,6 @@
         <PackageReference Include="DependencyGraph.Core" Version="1.0.1" />
         
         <PackageReference Include="NuGet.Configuration" Version="7.6.0" />
-        <PackageReference Include="NuGet.Frameworks" Version="7.6.0" ExcludeAssets="runtime" PrivateAssets="all" />
         <PackageReference Include="NuGet.Protocol" Version="7.6.0" />
         <PackageReference Include="NuGet.Versioning" Version="7.6.0" />
         

@@ -60,9 +60,13 @@ public class NuGetToolServiceTests
         // Assert
         Assert.That(response.Packages, Is.Not.Empty);
         
-        // All packages should match the filter
+        // All packages should match the filter on Id or Description
         Assert.That(response.Packages, Is.All.Matches<DotNetMetadataMcpServer.Models.NuGetPackageInfo>(
-            p => p.Id.StartsWith("Newtonsoft", StringComparison.OrdinalIgnoreCase)));
+            p => p.Id.Contains("Newtonsoft", StringComparison.OrdinalIgnoreCase) ||
+                 (p.Description != null && p.Description.Contains("Newtonsoft", StringComparison.OrdinalIgnoreCase))));
+        
+        Assert.That(response.Packages, Has.Some.Matches<DotNetMetadataMcpServer.Models.NuGetPackageInfo>(
+            p => p.Id == "Newtonsoft.Json"));
     }
 
     [Test]

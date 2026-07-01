@@ -139,12 +139,12 @@ public class NuGetDependenciesTest
         // Assert
         Assert.That(response.Packages, Is.Not.Empty, "Should return packages");
         
-        // Verify that all results start with "Newtonsoft"
+        // All packages should match the filter on Id or Description
         Assert.That(response.Packages, Has.All.Matches<NuGetPackageInfo>(
-            p => p.Id.StartsWith("Newtonsoft", StringComparison.OrdinalIgnoreCase)),
-            "All results should start with 'Newtonsoft'");
+            p => p.Id.Contains("Newtonsoft", StringComparison.OrdinalIgnoreCase) ||
+                 (p.Description != null && p.Description.Contains("Newtonsoft", StringComparison.OrdinalIgnoreCase))),
+            "All results should match 'Newtonsoft' in Id or Description");
             
-        // Verify that Newtonsoft.Json is in the results
         Assert.That(response.Packages, Has.Some.Matches<NuGetPackageInfo>(
             p => p.Id == "Newtonsoft.Json"),
             "Newtonsoft.Json should be in the results");

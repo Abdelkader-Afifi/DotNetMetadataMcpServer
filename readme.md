@@ -42,7 +42,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Prerequisites
 
-- .NET 9.0 SDK or later
+- .NET 10.0 SDK or later
 - A .NET project that you want to explore
 
 ## Configuration
@@ -123,7 +123,7 @@ The server supports different strategies for locating package assemblies. Config
 
 | Mode | Behavior |
 |-|-|
-| `BuildOutput` | Default. Resolve assemblies from the build output directory (e.g. `bin/Debug/net9.0/`). Requires a full build. |
+| `BuildOutput` | Default. Resolve assemblies from the build output directory (e.g. `bin/Debug/net10.0/`). Requires a full build. |
 | `NuGetCache` | Resolve assemblies directly from the NuGet global packages cache. Only requires `dotnet restore`, no build needed. Project types are skipped gracefully. |
 | `Auto` | Try build output first, fall back to NuGet cache if the assembly is not found in the build output. |
 

@@ -1,0 +1,22 @@
+# My Deep Dive Analysis: .NET Types Explorer MCP Server
+
+## Architecture Overview
+ reverse-engineered this project to understand how it works. 
+
+### 1. The 3-Layer Pipeline
+- **MSBuild Layer**: Evaluates .csproj files to find compiled assemblies
+- **Reflection Layer**: Uses .NET reflection to extract type metadata
+- **MCP Protocol Layer**: Exposes tools via the Model Context Protocol standard
+
+### 2. Key Technical Decisions I Learned
+- **Why Assembly Resolution Modes?** (BuildOutput vs NuGetCache)
+  - BuildOutput: Fast for development, requires compilation
+  - NuGetCache: Slower first run, but no build needed
+  - Auto: Best of both worlds
+
+- **Why Parallel NuGet Queries?**
+  - Queries multiple feeds simultaneously for speed
+  - Deduplicates results intelligently
+
+### 3. My Custom Addition
+ - Added a new tool that return the version of any assembly
